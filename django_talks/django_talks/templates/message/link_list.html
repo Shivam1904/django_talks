@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<ol>
+{% for link in object_list %} 
+<!-- We are using linklistview, so the templates will be provided with a list of objects in default name object_list -->
+	<li>
+		<a href="{{link.url}}"><b>{{ link.title }}</b></a> - [[ {{ link.votes }}]]
+	</li>
+{% endfor %}
+</ol>
+{% endblock %}
