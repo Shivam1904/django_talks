@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from message.views import LinkListView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', LinkListView.as_view(), name='Home')
+    url(r'^$', LinkListView.as_view(), name='Home'),
 ]
+	

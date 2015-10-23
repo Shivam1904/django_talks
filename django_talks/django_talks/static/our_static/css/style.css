@@ -1,0 +1,29 @@
+.navbar {
+	border-radius: 0px !important
+}
+
+.margin{
+	border:3px solid #8AC007;
+	margin-top:20px;
+	font-size:15px;
+	padding:25px;
+	border-radius:25px;				
+}
+
+.formfield{
+	font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    background: #fff;
+    border: 1px solid #CFE3DC;
+    border-radius: 4px;
+    cursor: auto;
+    display: block;
+    font-weight: 400;
+    height: 30px;
+    margin: 10px 0px;
+    padding: 6px 14% 8px 10px;
+    text-indent: 0;
+    vertical-align: middle;
+    width: 82%;
+}
