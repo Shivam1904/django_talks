@@ -5,17 +5,40 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
+<div class="col-md-12">
+<div class="col-md-3"></div>
+<div class="col-md-6 ">
+<div class="margin inset">
+<div class="header">Sign Up</div>
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+	{% csrf_token %}
+	<span class="norm_error">{{ form.non_field_errors }}</span>
 
+	<span class="norm_error">{{ form.username.errors }}</span>
+	<input autofocus="autofocus" id="id_username" maxlength="30" name="username" placeholder="Username" type="text" />
+
+	<span class="norm_error">{{ form.email.errors }}</span>
+	<input id="id_email" name="email" placeholder="E-mail address" type="email" />
+	
+	<span class="norm_error">{{ form.password1.errors }}</span>
+	<input id="id_password1" name="password1" placeholder="Password" type="password" />
+	<span class="norm_error">{{ form.password2.errors }}</span>
+	<input id="id_password2" name="password2" placeholder="Password (again)" type="password" /><input id="id_confirmation_key" maxlength="40" name="confirmation_key" type="hidden" />
+
+	{% if redirect_field_value %}
+	<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	{% endif %}
+	  
+
+    <button class="btn btn-primary button" type="submit">Sign Up</button>
+	<div class="footnote">
+         Already have an account? Then please <a href="{{ login_url }}">Sign In</a>
+     </div>
+</form>
+</div>
+
+</div>
+<div class="col-md-3"></div>
+</div>
 {% endblock %}

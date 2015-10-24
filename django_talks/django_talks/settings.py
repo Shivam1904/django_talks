@@ -46,10 +46,6 @@ INSTALLED_APPS = (
 )
 
 SITE_ID = 1
-from django.core.urlresolvers import reverse_lazy
-LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('home')
-LOGOUT_URL = reverse_lazy('logout')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -114,11 +110,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,"django_talks/static/","our_static"),)
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/user'
 
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'great.shivam19@gmail.com'
-EMAIL_HOST_PASSWORD = 'shivamrocks'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

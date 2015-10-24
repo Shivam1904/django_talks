@@ -7,7 +7,7 @@
 
 {% block content %}
 
-{% get_providers as socialaccount_providers %}
+<!-- {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
@@ -27,14 +27,42 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<!-- <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p> -->
-{% endif %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %} -->
 
 <div class="col-md-12">
 <div class="col-md-3"></div>
-<div class="col-md-6 margin">
-<form class="login" method="POST" action="{% url 'account_login' %}">
+<div class="col-md-6 ">
+  <div class="margin inset">
+      <div class="header">Sign In</div>
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+          <span class="norm_error">{{ form.non_field_errors }}</span>
+          <input id="id_login" class="login-input" maxlength="30" name="login" placeholder="Username" type="text" />
+          <span class="norm_error">{{ form.login.errors }}</span><br>
+          <input id="id_password"  class="login-input" name="password" placeholder="Password" type="password" />
+          <span class="norm_error">{{ form.password.errors }}</span><br>
+          
+          <div class="remember-forgot-section">
+              <input id="id_remember" name="remember" type="checkbox" />
+              <label for="id_remember">Remember Me</label>
+              <a class="forgot" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          </div>
+
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+      </form>
+
+      <div class="footnote">
+          Don't have an account? <a href="{% url 'account_signup' %}">Sign Up</a>
+      </div>
+  </div>
+
+<!-- <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
@@ -44,7 +72,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
 </form>
 <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p> -->
 </div>
 <div class="col-md-3"></div>
 </div>

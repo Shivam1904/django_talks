@@ -27,3 +27,49 @@
     vertical-align: middle;
     width: 82%;
 }
+
+input[type='password'],
+input[type='text'],
+input[type='email'] {
+    width: 86%;
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    background: #fff;
+    border: 2px solid #B9B0B0;
+    border-radius: 4px;
+    cursor: auto;
+    border-radius:4px;
+    padding: 2px 4px;
+    margin: 10px;
+    /*margin-top: 10px;*/
+}
+
+.inset {
+    background: rgba(186, 181, 181, 0.46)	;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.7);
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    text-align: center;
+}	
+
+.inset .header{
+	font-family: sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.norm_error{
+	font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: red;
+    text-align: left;
+    text-decoration: none;
+}
+
+.button{
+	width:50%;
+}
