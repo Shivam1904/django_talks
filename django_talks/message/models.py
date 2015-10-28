@@ -27,5 +27,20 @@ class Vote(models.Model):
 	link = models.ForeignKey(Link)
 
 	def __unicode__(self):
-		return 	self.voter.username+" voted "+self.link.title
+		return 	self.voter.username+" voted "+ self.link.title
 
+class ExtendedUserProfile(models.Model):
+	user = models.OneToOneField(User, unique=True)
+	#extra fields
+	about_me = models.TextField(null=True)
+
+	def __unicode__(self):
+		return "%s's Profile" %self.user
+
+# Signals
+def create_profile(sender, instance, created, **kwargs):
+	if created :
+		profile, create = ExtendedUserProfile.objects.get_or_create(user = instance)
+		print profile, create #Shivam's profile True
+from django.db.models.signals import post_save
+post_save.connect(create_profile, sender=User)

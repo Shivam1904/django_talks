@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ object.username }}'s Profile</h2>
+{% if object.extendeduserprofile.about_me %}
+<div>
+<b>About me : </b>
+{{ object.extendeduserprofile.about_me }}
+</div>
+{% endif %}
+<br> Goto message page -> <a href="/">Home Page</a>
+{% endblock %}
