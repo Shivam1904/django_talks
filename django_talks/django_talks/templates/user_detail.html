@@ -9,4 +9,8 @@
 </div>
 {% endif %}
 <br> Goto message page -> <a href="/">Home Page</a>
+
+{% if object.username == user.username %}
+<br> <a href="{% url 'edit_profile' %}"><b>Edit my profile</b></a>
+{% endif %}
 {% endblock %}

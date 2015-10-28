@@ -12,8 +12,6 @@ class VoteAdmin(admin.ModelAdmin):
 	pass
 admin.site.register(Vote, VoteAdmin)
 
-# class AdminExtendedUserProfile(admin.ModelAdmin):
-# 	pass
 
 class UserProfileInline(admin.StackedInline):
 	model = ExtendedUserProfile

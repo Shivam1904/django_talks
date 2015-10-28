@@ -37,10 +37,11 @@ class ExtendedUserProfile(models.Model):
 	def __unicode__(self):
 		return "%s's Profile" %self.user
 
-# Signals
+# Signals (savig a user)
 def create_profile(sender, instance, created, **kwargs):
 	if created :
 		profile, create = ExtendedUserProfile.objects.get_or_create(user = instance)
 		print profile, create #Shivam's profile True
+		
 from django.db.models.signals import post_save
 post_save.connect(create_profile, sender=User)
