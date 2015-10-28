@@ -1,15 +1,15 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse #reverse lookup for urls
+from django.core.urlresolvers import reverse
 from allauth.account.adapter import DefaultAccountAdapter  
 from .models import Link, Vote, ExtendedUserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, MessageForm
 
 class LinkListView(ListView):
 	model = Link
 	queryset = Link.with_votes.all()
-	paginate_by = 5
+	paginate_by = 2
 
 class UserProfileDetailView(DetailView):
 	model = get_user_model()
@@ -36,3 +36,17 @@ class UserProfileEditView(UpdateView):
 
 	def get_success_url(self):
 		return reverse("profile", kwargs={'slug': self.request.user})
+
+class MessageCreateView(CreateView):
+	model = Link
+	form_class = MessageForm
+
+	def form_valid(self, form):
+		f = form.save(commit=False)
+		f.rank_score = 0.0
+		f.started_by = self.request.user
+		f.save()
+		return super(MessageCreateView, self).form_valid(form)
+	
+class MessageDetailView(DetailView):
+	model = Link

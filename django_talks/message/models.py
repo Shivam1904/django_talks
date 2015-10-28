@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db.models import Count
+
 # Create your models here.
 
 class LinkVoteCountManager(models.Manager):
@@ -21,6 +23,9 @@ class Link(models.Model):
 
 	def __unicode__(self):
 		return self.title
+	
+	def get_absolute_url(self):
+		return reverse('message_detail', kwargs={"pk":str(self.id)})
 
 class Vote(models.Model):
 	voter = models.ForeignKey(User)
