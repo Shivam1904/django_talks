@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from allauth.account.adapter import DefaultAccountAdapter  
 from .models import Link, Vote, ExtendedUserProfile
 from .forms import UserProfileForm, MessageForm
@@ -50,3 +50,11 @@ class MessageCreateView(CreateView):
 	
 class MessageDetailView(DetailView):
 	model = Link
+
+class MessageUpdateView(UpdateView):
+	model = Link
+	form_class = MessageForm
+
+class MessageDeleteView(DeleteView):
+	model = Link
+	success_url = reverse_lazy("my_home")

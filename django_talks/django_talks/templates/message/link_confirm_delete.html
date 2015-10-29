@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Are you sure you want to delete "{{ object.title }}"?</p>
+
+<form method="post" action="{% url 'message_delete' pk=object.pk %}">
+  {% csrf_token %}
+  <a href="{% url 'message_detail' pk=object.pk %}">Go back</a> 
+  <p><input type="submit" class="btn btn-primary" value="Confirm deletion" /></p>
+</form> 
+
+{% endblock %}

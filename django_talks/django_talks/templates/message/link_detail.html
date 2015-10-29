@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2><a href="{{ object.link }}">{{ object.title }}</a></h2>
+<h2><a href="{{ object.url  }}">{{ object.title }}</a></h2>
 
+{% if object.started_by == user %}
+<a href="{% url 'message_update' pk=object.pk %}">Edit </a>
+<a href="{% url 'message_delete' pk=object.pk %}">Delete</a>
+{% endif %}
 <p>Submitted by <a href='{% url "profile" slug=object.started_by%}'>{{ object.started_by }}</a></p>
 
 <div class="desc">

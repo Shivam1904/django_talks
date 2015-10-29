@@ -51,6 +51,9 @@
     
     {% block extra_body %}
     {% endblock %}
-  
+    {% if user.is_authenticated %}
+    <br> 
+      <a href="{% url 'message_create' %}"><b>Submit message </b></a>
+    {% endif %}
   </body>
 </html>
